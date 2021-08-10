@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>jQuery Mobile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.5.min.js"></script>
+    <link rel="stylesheet" href="Style.css">
+    <script src="jquery-mobile.js"></script>
+
+</head>
+
+<body>
+
+    <!-------------- First page for form ----------->
+    <div data-role="page">
+        <!-------------- First page header ----------->
+        <div data-role="header">
+        </div>
+        <!-------------- First page main content ----------->
+        <div data-role="main" class="ui-content">
+            <form method="post" action="#pageone" data-ajax="false">
+                <main class="container">
+                    <div class="input-field">
+                        <input type="text" name="carro" id="carro" placeholder="Nome do Carro" required minlength="2">
+                        <div class="underline"></div>
+                    </div>
+                    <div class="input-field">
+                        <input type="text" name="placa" id="placa" onkeyup="validarPlaca(this)" placeholder="Insira a placa do carro" maxlength="8" autofocus required>
+                        <div class="underline"></div>
+                    </div>
+                    <br>
+                    <div class="input-field">
+                        <input type="text" name="distancia" id="distancia" placeholder="Distancia percorrida">
+                        <div class="underline"></div>
+                    </div>
+                    <br>
+                    <div class="input-field">
+                        <input type="text" name="gasolina" id="gasolina" placeholder="Insira a quantidade de gasolina" autofocus required>
+                        <div class="underline"></div>
+                    </div>
+                    <br>
+                    <input type="submit" onclick="executar(event);" name="submit" value="Cadastrar">
+            </form>
+        </div>
+        <script>
+            function executar() {
+                event.preventDefault();
+                var distancia = parseFloat(document.getElementById('distancia').value);
+                var gasolina = parseFloat(document.getElementById('gasolina').value);
+                var resultado = (distancia / gasolina);
+
+                console.log(resultado)
+
+
+            }
+        </script>
+
+        <script>
+            function validarPlaca(entradaDoUsuario) {
+                var placa = entradaDoUsuario.value;
+
+                if (placa.length === 1 || placa.length === 2) {
+                    placaMaiuscula = placa.toUpperCase();
+                    document.forms[0].placa.value = placaMaiuscula;
+                    return true;
+                }
+
+                if (placa.length === 3) {
+                    placa += "-";
+                    placaMaiuscula = placa.toUpperCase();
+                    document.forms[0].placa.value = placaMaiuscula;
+                    return true;
+
+
+                }
+
+
+            }
+        </script>
+    </div>
+    <!-------------------------------------------------------------
+End of First page
+-------------------------------------------------------------->
+    <!-------------- Second page ----------->
+    <div data-role="page" id="pageone">
+        <!-------------- Second page header ----------->
+        <div data-role="header">
+            <h1>JQuery Mobile Form</h1>
+        </div>
+        <!-------------- Second page main content ----------->
+        <main class="container">
+            <h2>Login</h2>
+            <form id="formValidate" method="post" action="">
+                <div class="input-field">
+                    <input type="text" name="username" id="username" placeholder="Enter Your Username" required minlength="3">
+                    <div class="underline"></div>
+                    <script>
+                        if (username < 3) {
+                            console.log("Preencha os campos corretamente")
+                        } else {
+                            console.log("Está preenchido de forma correta")
+                        }
+                    </script>
+                </div>
+                <div class="input-field">
+                    <input type="password" name="password" id="password" placeholder="Enter Your Password" required>
+                    <div class="underline"></div>
+                    <script>
+                        if (password == true) {
+                            FormValidate(password);
+                            console.log("Preencha os campos corretamente")
+                        } else {
+                            console.log("Está preenchido de forma correta")
+                        }
+                    </script>
+                </div>
+
+                <input type="submit" value="Enviar">
+            </form>
+
+
+            <!-------------------------------------------------------------
+End of Second page
+-------------------------------------------------------------->
+</body>
+
+</html>
